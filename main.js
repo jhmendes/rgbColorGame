@@ -1,13 +1,15 @@
+//variables
+
 var colors = generateRandomColors(6);
-
-
-
 var squares = document.querySelectorAll('.square');
 var pickedColor = pickColor(colors);
 var colorDisplay = document.querySelector('.pickedColor');
 var message = document.querySelector('.message');
 var h1 = document.querySelector('h1');
-var resetBtn = document.querySelector('.container-2 button');
+var resetBtn = document.querySelector('.reset');
+var easyBtn = document.querySelector('.easy');
+var hardBtn = document.querySelector('.hard');
+var mode = 'hard';
 colorDisplay.textContent = pickedColor;
 
 
@@ -17,7 +19,11 @@ resetBtn.addEventListener('click', function() {
     // document.location.reload();
     //generate all new colors
     this.textContent = 'New Colors';
-    colors = generateRandomColors(6);
+    if (mode === 'hard') {
+        colors = generateRandomColors(6);
+    } else {
+        colors = generateRandomColors(3);
+    }
     pickedColor = pickColor(colors);
     colorDisplay.textContent = pickedColor;
     h1.style.backgroundColor = '#252525';
@@ -26,6 +32,39 @@ resetBtn.addEventListener('click', function() {
     }
    
 });
+
+easyBtn.addEventListener('click', function() {
+    this.classList.add('selected');
+    hardBtn.classList.remove('selected');
+    colors = generateRandomColors(3);
+    pickedColor = pickColor(colors);
+    colorDisplay.textContent = pickedColor;
+    h1.style.backgroundColor = '#252525';
+    for(var i = 0; i < squares.length; i++) {
+        if (colors[i]) {
+            squares[i].style.backgroundColor = colors[i];
+        } else {
+            squares[i].style.display = "none";
+        }
+    }
+    mode = 'easy';
+});
+
+hardBtn.addEventListener('click', function(){
+    this.classList.add('selected');
+    easyBtn.classList.remove('selected');
+    colors = generateRandomColors(6);
+    pickedColor = pickColor(colors);
+    colorDisplay.textContent = pickedColor;
+    h1.style.backgroundColor = '#252525';
+    for(var i = 0; i < squares.length; i++) {
+            squares[i].style.backgroundColor = colors[i];
+            squares[i].style.display = "block";
+    }
+    mode = 'hard';
+});
+
+
 
 
 

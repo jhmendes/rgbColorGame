@@ -26,7 +26,7 @@ resetBtn.addEventListener('click', function() {
     }
     pickedColor = pickColor(colors);
     colorDisplay.textContent = pickedColor;
-    h1.style.backgroundColor = '#252525';
+    h1.style.backgroundColor = 'steelblue';
     for (i = 0; i < squares.length; i++) {
         squares[i].style.backgroundColor = colors[i];
     }
@@ -39,7 +39,7 @@ easyBtn.addEventListener('click', function() {
     colors = generateRandomColors(3);
     pickedColor = pickColor(colors);
     colorDisplay.textContent = pickedColor;
-    h1.style.backgroundColor = '#252525';
+    h1.style.backgroundColor = 'steelblue';
     for(var i = 0; i < squares.length; i++) {
         if (colors[i]) {
             squares[i].style.backgroundColor = colors[i];
@@ -56,7 +56,7 @@ hardBtn.addEventListener('click', function(){
     colors = generateRandomColors(6);
     pickedColor = pickColor(colors);
     colorDisplay.textContent = pickedColor;
-    h1.style.backgroundColor = '#252525';
+    h1.style.backgroundColor = 'steelblue';
     for(var i = 0; i < squares.length; i++) {
             squares[i].style.backgroundColor = colors[i];
             squares[i].style.display = "block";
@@ -108,8 +108,7 @@ function pickColor(arr){
 function generateRandomColors(x) {
     var arr = [];
 
-  //add x random colors to array
-//3
+
     for(var i = 0; i < x; i++){
         arr.push(randomColor());
     }

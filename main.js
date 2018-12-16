@@ -12,6 +12,41 @@ var mode = 'hard';
 colorDisplay.textContent = pickedColor;
 
 
+init();
+
+function init() {
+    for (var i = 0; i < modeButtons.length; i++) {
+
+        modeButtons[i].addEventListener('click', function () {
+
+            modeButtons[0].classList.remove('selected');
+            modeButtons[1].classList.remove('selected');
+            this.classList.add('selected');
+            var that = this;
+            reset.call(that);
+        });
+    }
+
+    for (i = 0; i < squares.length; i++) {
+        squares[i].style.backgroundColor = colors[i];
+
+        //add click listeners to squares
+
+        squares[i].addEventListener('click', function () {
+            //grab color of picked square
+            var color = this.style.backgroundColor;
+
+            if (color === pickedColor) {
+                correct();
+
+            } else {
+                this.style.backgroundColor = '#232323';
+                message.textContent = 'Try Again';
+            }
+        });
+    }
+}
+
 //EVENT LISTENERS
 
 
@@ -35,38 +70,11 @@ resetBtn.addEventListener('click', function () {
 
 });
 
-for (var i = 0; i < modeButtons.length; i++) {
 
-    modeButtons[i].addEventListener('click', function () {
-
-        modeButtons[0].classList.remove('selected');
-        modeButtons[1].classList.remove('selected');
-        this.classList.add('selected');
-        var that = this;
-        reset.call(that);
-    });
-}
 
 //LOOP
 
-for (i = 0; i < squares.length; i++) {
-    squares[i].style.backgroundColor = colors[i];
 
-    //add click listeners to squares
-
-    squares[i].addEventListener('click', function () {
-        //grab color of picked square
-        var color = this.style.backgroundColor;
-
-        if (color === pickedColor) {
-            correct();
-
-        } else {
-            this.style.backgroundColor = '#232323';
-            message.textContent = 'Try Again';
-        }
-    });
-}
 
 // FUNCTION DECLARATIONS
 
@@ -114,7 +122,7 @@ function reset() {
     colorDisplay.textContent = pickedColor;
     h1.style.backgroundColor = 'steelblue';
     for (var i = 0; i < squares.length; i++) {
-    
+
         if (colors[i]) {
             squares[i].style.display = 'block';
             squares[i].style.backgroundColor = colors[i];
